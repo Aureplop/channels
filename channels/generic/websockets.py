@@ -164,7 +164,8 @@ class JsonWebsocketConsumer(WebsocketConsumer):
 
     @classmethod
     def group_send(cls, name, content, close=False):
-        WebsocketConsumer.group_send(name, json.dumps(content), close=close)
+        WebsocketConsumer.group_send(name, json.dumps(content,
+            cls=DjangoJSONEncoder), close=close)
 
 
 class WebsocketDemultiplexer(JsonWebsocketConsumer):
